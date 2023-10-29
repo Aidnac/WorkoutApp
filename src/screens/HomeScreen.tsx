@@ -14,7 +14,7 @@ export const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={data}
+        data={data as Workout[]}
         keyExtractor={item => item.slug}
         renderItem={renderItem}
       />

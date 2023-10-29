@@ -4,12 +4,12 @@ export type SequenceType = 'exercise' | 'stretch' | 'break';
 export interface Workout {
   slug: string;
   name: string;
-  duration: Difficulty;
-  difficulty: string;
-  sequence: SequenceType[];
+  duration: number;
+  difficulty: Difficulty;
+  sequence: SequenceItem[];
 }
 
-export interface SquenceItem {
+export interface SequenceItem {
   slug: string;
   name: string;
   type: SequenceType;
