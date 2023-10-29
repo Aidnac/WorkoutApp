@@ -2,21 +2,15 @@ import React from 'react';
 import {StyleSheet, FlatList, Text, View} from 'react-native';
 import data from '../../data.json';
 import {Workout} from '../types/data';
+import {WorkoutItem} from '../components/WorkOutItem';
 
-export const HomeScreen = () => {
-  const renderItem = ({item}: {item: Workout}) => (
-    <View>
-      <Text>{item.name}</Text>
-      <Text>{item.difficulty}</Text>
-    </View>
-  );
-
+export const HomeScreen = () => { 
   return (
     <View style={styles.container}>
       <FlatList
         data={data as Workout[]}
         keyExtractor={item => item.slug}
-        renderItem={renderItem}
+        renderItem={WorkoutItem}
       />
     </View>
   );
