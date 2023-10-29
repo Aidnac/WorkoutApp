@@ -1,15 +1,10 @@
-import {NativeStackHeaderProps} from '@react-navigation/native-stack';
-import React, {useEffect} from 'react';
-import {View, Text, Button} from 'react-native';
+import React from 'react';
+import {View, Text} from 'react-native';
 
-export const PlannerScreen = ({navigation}: NativeStackHeaderProps) => {
-  useEffect(() => {
-    console.log('Rendering Planner Screen');
-  }, []);
+export const PlannerScreen = () => {
   return (
     <View>
       <Text>I am Planner screen</Text>
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
     </View>
   );
 };

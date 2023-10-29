@@ -1,18 +1,29 @@
-import React, {useEffect} from 'react';
-import {Button, Text, View} from 'react-native';
+import React from 'react';
+import {StyleSheet, FlatList, Text, View} from 'react-native';
+import data from '../../data.json';
+import {Workout} from '../types/data';
 
-export const HomeScreen = ({navigation}: any) => {
-  useEffect(() => {
-    console.log('Rendering Home screen');
-  }, []);
+export const HomeScreen = () => {
+  const renderItem = ({item}: {item: Workout}) => (
+    <View>
+      <Text>{item.name}</Text>
+      <Text>{item.difficulty}</Text>
+    </View>
+  );
 
   return (
-    <View>
-      <Text>I am home screen</Text>
-      <Button
-        title="Go to Planner"
-        onPress={() => navigation.push('Planner')}
+    <View style={styles.container}>
+      <FlatList
+        data={data}
+        keyExtractor={item => item.slug}
+        renderItem={renderItem}
       />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+  },
+});
