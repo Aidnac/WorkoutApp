@@ -1,7 +1,8 @@
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
-import React, {useEffect} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {getworkoutBySlug} from '../storage/workouts';
+import React from 'react';
+import {Alert, StyleSheet, Text, View} from 'react-native';
+import {useWorkout} from '../hooks/useWorkout';
+import {PressableText} from '../components/styled/PressableText';
 
 type DetailParams = {
   route: {
@@ -14,17 +15,17 @@ type DetailParams = {
 type Navigation = NativeStackHeaderProps & DetailParams;
 
 export const WorkoutDetailScreen = ({route}: Navigation) => {
-  useEffect(() => {
-    const getData = async () => {
-      const workout = await getworkoutBySlug(route.params.slug);
-      console.log(workout);
-    };
-    getData();
-  }, []);
+  const workout = useWorkout(route.params.slug);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Slug - {route.params.slug}</Text>
+      <Text style={styles.heading}>{workout?.name}</Text>
+      <PressableText
+        onPress={() => {
+          Alert.alert('something else', 'Has been pressed');
+        }}
+        text="check sequence"
+      />
     </View>
   );
 };
