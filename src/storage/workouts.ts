@@ -16,6 +16,12 @@ export const getworkouts = async (): Promise<Workout[]> => {
   return workouts;
 };
 
+export const getworkoutBySlug = async (slug: string): Promise<Workout> => {
+  const workouts = await getData('workout-data');
+  const workout = workouts.filter(w => w.slug === slug)[0];
+  return workout;
+};
+
 export const clearWorkouts = async () => {
   await removeItem('workout-data');
 };
