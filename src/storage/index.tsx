@@ -19,3 +19,12 @@ export const getData = async (key: string) => {
     console.log(e.message);
   }
 };
+
+export const containsKey = async (key: string) => {
+  try {
+    const keys = await AsyncStorage.getAllKeys();
+    return keys.includes(key);
+  } catch (error: any) {
+    console.error(error.message);
+  }
+};
