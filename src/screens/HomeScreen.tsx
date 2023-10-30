@@ -1,19 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {StyleSheet, FlatList, Text, View, Pressable} from 'react-native';
-import {Workout} from '../types/data';
 import {WorkoutItem} from '../components/WorkOutItem';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
-import {getworkouts} from '../storage/workouts';
+import {useWorkouts} from '../hooks/useWorkouts';
 
 export const HomeScreen = ({navigation}: NativeStackHeaderProps) => {
-  const [workouts, setWorkouts] = useState<Workout[]>([]);
-  useEffect(() => {
-    const getData = async () => {
-      const _workouts = await getworkouts();
-      setWorkouts(_workouts);
-    };
-    getData();
-  }, []);
+  const workouts = useWorkouts();
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>New Workouts</Text>
