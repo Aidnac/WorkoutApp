@@ -4,8 +4,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {HomeScreen} from '../screens/HomeScreen';
 import {PlannerScreen} from '../screens/PlannerScreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Text} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {WorkoutDetailScreen} from '../screens/WorkoutDetailScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 export const Navigation = () => {
   return (
@@ -24,12 +25,17 @@ const RootNavigator = () => {
         component={BottomTabNavigator}
         options={{headerShown: false}}
       />
+      <Stack.Screen name="WorkoutDetail" component={WorkoutDetailScreen} />
     </Stack.Navigator>
   );
 };
 
 const BottomTab = createBottomTabNavigator();
 const BottomTabNavigator = () => {
+  const TabBarIcon = ({color, size}: {color: any; size: number}) => (
+    <MaterialCommunityIcons name="home" color={color} size={size} />
+  );
+
   return (
     <BottomTab.Navigator initialRouteName="Home">
       <BottomTab.Screen
